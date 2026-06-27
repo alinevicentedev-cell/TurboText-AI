@@ -1,0 +1,17 @@
+{
+  "name": "TurboText AI",
+  "short_name": "TurboText AI",
+  "description": "Audio longo. Texto preciso. Resultados rapidos.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#2668ff",
+  "icons": [
+    {
+      "src": "assets/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
