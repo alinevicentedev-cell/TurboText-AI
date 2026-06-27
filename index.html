@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="TurboText AI transcreve audios longos em texto com suporte a varios idiomas, exportacao e pagamento por uso."
+    />
+    <meta name="application-name" content="TurboText AI" />
+    <meta property="og:site_name" content="TurboText AI" />
+    <meta property="og:title" content="TurboText AI" />
+    <meta property="og:description" content="Audio longo. Texto preciso. Resultados rapidos." />
+    <meta property="og:image" content="assets/logo.jpg" />
+    <title>TurboText AI | Audio longo em texto preciso</title>
+    <link rel="icon" href="assets/logo.jpg" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#transcrever" aria-label="TurboText AI">
+        <img src="assets/logo.jpg" alt="TurboText AI" />
+      </a>
+
+      <nav class="nav-links" aria-label="Navegacao principal">
+        <a href="#transcrever">Transcrever</a>
+        <a href="#precos">Precos</a>
+        <a href="#pagamentos">Pagamentos</a>
+        <a href="#seguranca">Seguranca</a>
+      </nav>
+
+      <a class="button button-primary button-compact" href="#transcrever">
+        <i data-lucide="upload-cloud" aria-hidden="true"></i>
+        Enviar audio
+      </a>
+    </header>
+
+    <main>
+      <section class="workspace-band" id="transcrever">
+        <div class="workspace-heading">
+          <div>
+            <p class="eyebrow">Audio longo. Texto preciso. Resultados rapidos.</p>
+            <h1>Transcreva arquivos grandes em texto pronto para revisar, exportar e compartilhar.</h1>
+          </div>
+          <div class="trust-strip" aria-label="Destaques">
+            <span><i data-lucide="badge-check" aria-hidden="true"></i> 1 audio gratis</span>
+            <span><i data-lucide="languages" aria-hidden="true"></i> Todos os idiomas</span>
+            <span><i data-lucide="lock-keyhole" aria-hidden="true"></i> Checkout seguro</span>
+          </div>
+        </div>
+
+        <div class="app-grid">
+          <section class="tool-panel" aria-labelledby="upload-title">
+            <div class="panel-title">
+              <div>
+                <p class="section-kicker">Novo projeto</p>
+                <h2 id="upload-title">Enviar arquivo</h2>
+              </div>
+              <span class="quota-pill" id="freeBadge">Gratis disponivel</span>
+            </div>
+
+            <label class="drop-zone" for="audioFile" id="dropZone">
+              <input
+                id="audioFile"
+                name="audioFile"
+                type="file"
+                accept="audio/*,video/*,.mp3,.wav,.m4a,.mp4,.mpeg,.mpga,.ogg,.flac,.webm"
+              />
+              <span class="drop-icon">
+                <i data-lucide="file-audio-2" aria-hidden="true"></i>
+              </span>
+              <strong>Solte o audio aqui ou selecione um arquivo</strong>
+              <small>MP3, WAV, M4A, MP4, MPEG, MPGA, OGG, FLAC e WEBM ate 25 MB por envio.</small>
+            </label>
+
+            <div class="file-summary" id="fileSummary" aria-live="polite">
+              <span>Nenhum arquivo selecionado</span>
+            </div>
+
+            <div class="form-grid">
+              <label>
+                Idioma
+                <select id="language">
+                  <option value="Detectar automaticamente">Detectar automaticamente</option>
+                  <option>Portugues</option>
+                  <option>Ingles</option>
+                  <option>Espanhol</option>
+                  <option>Frances</option>
+                  <option>Alemao</option>
+                  <option>Italiano</option>
+                  <option>Japones</option>
+                  <option>Mandarim</option>
+                  <option>Arabe</option>
+                </select>
+              </label>
+
+              <label>
+                Saida
+                <select id="outputFormat">
+                  <option>Texto editavel</option>
+                  <option>DOCX</option>
+                  <option>PDF</option>
+                  <option>SRT para legendas</option>
+                  <option>VTT para videos</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="toggle-grid" aria-label="Opcoes de transcricao">
+              <label class="switch-line">
+                <input type="checkbox" id="timestamps" checked />
+                <span>Marcar tempo por trecho</span>
+              </label>
+              <label class="switch-line">
+                <input type="checkbox" id="speakers" checked />
+                <span>Separar falantes</span>
+              </label>
+              <label class="switch-line">
+                <input type="checkbox" id="summary" checked />
+                <span>Gerar resumo executivo</span>
+              </label>
+            </div>
+
+            <div class="estimate-row">
+              <div>
+                <span class="muted">Estimativa</span>
+                <strong id="priceEstimate">R$ 0,00 no primeiro audio</strong>
+              </div>
+              <div>
+                <span class="muted">Duracao</span>
+                <strong id="durationEstimate">Aguardando arquivo</strong>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="button button-primary" id="transcribeButton" type="button">
+                <i data-lucide="sparkles" aria-hidden="true"></i>
+                Transcrever agora
+              </button>
+              <button class="button button-soft" id="checkoutButton" type="button">
+                <i data-lucide="credit-card" aria-hidden="true"></i>
+                Comprar creditos
+              </button>
+            </div>
+          </section>
+
+          <aside class="result-panel" aria-labelledby="result-title">
+            <div class="panel-title">
+              <div>
+                <p class="section-kicker">Resultado</p>
+                <h2 id="result-title">Transcricao</h2>
+              </div>
+              <span class="status-dot" id="statusDot">Pronto</span>
+            </div>
+
+            <div class="usage-meter">
+              <div>
+                <span class="muted">Uso gratuito</span>
+                <strong id="usageLabel">1 audio restante</strong>
+              </div>
+              <div class="meter-track" aria-hidden="true">
+                <span id="usageBar"></span>
+              </div>
+            </div>
+
+            <div class="wave-panel" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="progress-block">
+              <div class="progress-label">
+                <span id="progressLabel">Aguardando envio</span>
+                <strong id="progressValue">0%</strong>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <span id="progressBar"></span>
+              </div>
+            </div>
+
+            <div class="transcript-output" id="transcriptOutput">
+              <p>Quando o audio for enviado, a transcricao real aparecera aqui. Para funcionar publicado, configure a chave OPENAI_API_KEY no Netlify.</p>
+            </div>
+
+            <div class="export-row" aria-label="Exportacoes">
+              <button class="icon-button" type="button" title="Baixar TXT" aria-label="Baixar TXT" id="downloadTxtButton">
+                <i data-lucide="file-text" aria-hidden="true"></i>
+              </button>
+              <button class="icon-button" type="button" title="Salvar PDF" aria-label="Salvar PDF" id="downloadPdfButton">
+                <i data-lucide="file-down" aria-hidden="true"></i>
+              </button>
+              <button class="icon-button" type="button" title="Copiar texto" aria-label="Copiar texto" id="copyButton">
+                <i data-lucide="copy" aria-hidden="true"></i>
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="pricing-band" id="precos">
+        <div class="section-heading">
+          <p class="eyebrow">Precos de lancamento</p>
+          <h2>Modelo simples: o primeiro audio e gratis, depois voce paga pelo volume.</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <p class="plan-label">Gratis</p>
+            <h3>1 audio</h3>
+            <strong class="price">R$ 0</strong>
+            <ul>
+              <li>Primeiro arquivo sem cartao</li>
+              <li>Transcricao automatica</li>
+              <li>Resumo e texto editavel</li>
+            </ul>
+            <a class="button button-soft" href="#transcrever">Comecar</a>
+          </article>
+
+          <article class="price-card featured">
+            <p class="plan-label">Avulso</p>
+            <h3>Por minuto</h3>
+            <strong class="price">R$ 0,99/min</strong>
+            <ul>
+              <li>Minimo de R$ 19,90 por compra</li>
+              <li>Ideal para entrevistas e aulas</li>
+              <li>Pagamento por Pix, cartao ou boleto</li>
+            </ul>
+            <button class="button button-primary plan-button" type="button" data-plan="avulso">Comprar creditos</button>
+          </article>
+
+          <article class="price-card">
+            <p class="plan-label">Pro</p>
+            <h3>Uso mensal</h3>
+            <strong class="price">R$ 79,90/mes</strong>
+            <ul>
+              <li>180 minutos incluidos</li>
+              <li>Extras por R$ 0,69/min</li>
+              <li>Exportacao DOCX, PDF, SRT e VTT</li>
+            </ul>
+            <button class="button button-soft plan-button" type="button" data-plan="pro">Assinar Pro</button>
+          </article>
+
+          <article class="price-card">
+            <p class="plan-label">Estudio</p>
+            <h3>Alto volume</h3>
+            <strong class="price">R$ 249,90/mes</strong>
+            <ul>
+              <li>720 minutos incluidos</li>
+              <li>Extras por R$ 0,49/min</li>
+              <li>Pastas, equipe e prioridade</li>
+            </ul>
+            <button class="button button-soft plan-button" type="button" data-plan="estudio">Assinar Estudio</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="flow-band">
+        <div class="section-heading compact">
+          <p class="eyebrow">Fluxo de uso</p>
+          <h2>Do audio ao texto final em poucos passos.</h2>
+        </div>
+        <div class="flow-grid">
+          <article>
+            <span>01</span>
+            <h3>Envie o arquivo</h3>
+            <p>Escolha o idioma ou deixe a deteccao automatica cuidar disso.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Acompanhe o progresso</h3>
+            <p>Arquivos longos sao processados com status claro e estimativa de custo.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Revise e exporte</h3>
+            <p>Baixe em texto, documento, PDF ou legenda para video.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="payments-band" id="pagamentos">
+        <div class="payments-copy">
+          <p class="eyebrow">Pagamentos</p>
+          <h2>Pronto para Pix, cartao, boleto e assinatura recorrente.</h2>
+          <p>
+            Para vender no Brasil, o caminho recomendado e Mercado Pago Checkout Pro.
+            Para clientes internacionais, Stripe Checkout pode entrar como segunda opcao.
+          </p>
+        </div>
+        <div class="payment-methods" aria-label="Meios de pagamento">
+          <span><i data-lucide="qr-code" aria-hidden="true"></i> Pix</span>
+          <span><i data-lucide="credit-card" aria-hidden="true"></i> Cartao</span>
+          <span><i data-lucide="receipt" aria-hidden="true"></i> Boleto</span>
+          <span><i data-lucide="repeat" aria-hidden="true"></i> Recorrencia</span>
+        </div>
+      </section>
+
+      <section class="security-band" id="seguranca">
+        <div class="security-grid">
+          <article>
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            <h3>Privacidade</h3>
+            <p>Arquivos de audio devem ser enviados para armazenamento privado e removidos conforme sua politica de retencao.</p>
+          </article>
+          <article>
+            <i data-lucide="server-cog" aria-hidden="true"></i>
+            <h3>Escala</h3>
+            <p>O front-end esta pronto para conectar a uma API de transcricao, fila de processamento e armazenamento em nuvem.</p>
+          </article>
+          <article>
+            <i data-lucide="badge-dollar-sign" aria-hidden="true"></i>
+            <h3>Controle de uso</h3>
+            <p>O primeiro audio gratis aparece no navegador; em producao, valide o limite por login, e-mail e pagamento confirmado.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="checkout-modal" id="checkoutModal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+        <button class="icon-button modal-close" type="button" data-close-modal aria-label="Fechar">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+        <p class="section-kicker">Checkout TurboText AI</p>
+        <h2 id="checkoutTitle">Escolha como continuar</h2>
+        <div class="modal-options">
+          <button type="button" class="checkout-option" data-plan="avulso">
+            <strong>Creditos avulsos</strong>
+            <span>R$ 0,99 por minuto, minimo R$ 19,90</span>
+          </button>
+          <button type="button" class="checkout-option" data-plan="pro">
+            <strong>Plano Pro</strong>
+            <span>R$ 79,90 por mes com 180 minutos</span>
+          </button>
+          <button type="button" class="checkout-option" data-plan="estudio">
+            <strong>Plano Estudio</strong>
+            <span>R$ 249,90 por mes com 720 minutos</span>
+          </button>
+        </div>
+        <p class="modal-note">O pagamento real e conectado no backend com Mercado Pago ou Stripe. A transcricao real ja usa backend seguro.</p>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <img src="assets/logo.jpg" alt="TurboText AI" />
+      <p>TurboText AI. Audio longo, texto preciso, resultados rapidos.</p>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
