@@ -63,14 +63,16 @@ select {
 .brand {
   display: inline-flex;
   align-items: center;
-  min-width: 178px;
+  min-width: 240px;
 }
 
 .brand img {
   display: block;
-  width: 188px;
-  max-width: 34vw;
-  height: auto;
+  width: 240px;
+  max-width: 32vw;
+  height: 66px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .nav-links {
@@ -553,7 +555,7 @@ select {
 
 .pricing-band,
 .flow-band,
-.payments-band,
+payments-band,
 .security-band {
   padding: 62px 32px;
 }
@@ -698,8 +700,11 @@ select {
 }
 
 .footer img {
-  width: 168px;
-  height: auto;
+  width: 260px;
+  max-width: min(58vw, 260px);
+  height: 72px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .footer p {
@@ -836,8 +841,9 @@ select {
   }
 
   .brand img {
-    width: 154px;
-    max-width: 48vw;
+    width: 170px;
+    max-width: 50vw;
+    height: 48px;
   }
 
   .button-compact {
