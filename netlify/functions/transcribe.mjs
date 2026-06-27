@@ -44,6 +44,21 @@ const extractOutputText = (data) => {
     .trim();
 };
 
+const friendlyOpenAIError = (status, message) => {
+  const text = String(message || "");
+  const lower = text.toLowerCase();
+
+  if (status === 401 || lower.includes("incorrect api key") || lower.includes("valid issuer")) {
+    return "A chave da OpenAI esta incorreta ou foi copiada incompleta. Crie uma nova em platform.openai.com/api-keys e salve no Netlify como OPENAI_API_KEY em Functions.";
+  }
+
+  if (status === 429 || lower.includes("quota") || lower.includes("billing")) {
+    return "A conta da OpenAI esta sem creditos, sem limite disponivel ou precisa configurar faturamento.";
+  }
+
+  return text || "A API de transcricao recusou o audio.";
+};
+
 const createSummary = async ({ apiKey, text, language }) => {
   if (!text || text.length < 120) return "";
 
@@ -131,7 +146,7 @@ export default async (request) => {
 
     if (!response.ok) {
       return json(response.status, {
-        error: data?.error?.message || "A API de transcricao recusou o audio.",
+        error: friendlyOpenAIError(response.status, data?.error?.message),
       });
     }
 
