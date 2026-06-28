@@ -188,7 +188,25 @@ const closeCheckout = () => {
   document.body.classList.remove("modal-open");
 };
 
-const goToCheckout = (plan) => {
+const createCheckout = async (plan) => {
+  const response = await fetch("/.netlify/functions/create-payment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ plan }),
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok || !data.checkoutUrl) {
+    throw new Error(data.error || "Nao foi possivel abrir o checkout do Mercado Pago.");
+  }
+
+  return data.checkoutUrl;
+};
+
+const goToCheckout = async (plan) => {
   const url = CHECKOUT_URLS[plan];
 
   if (url) {
@@ -196,7 +214,13 @@ const goToCheckout = (plan) => {
     return;
   }
 
-  showToast("Checkout em modo demonstracao. Configure o link real no guia de pagamentos.");
+  try {
+    showToast("Abrindo checkout seguro do Mercado Pago...");
+    const checkoutUrl = await createCheckout(plan);
+    window.location.href = checkoutUrl;
+  } catch (error) {
+    showToast(error.message);
+  }
 };
 
 const buildTranscriptText = (result) => {
