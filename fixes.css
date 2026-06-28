@@ -19,6 +19,40 @@
   padding: 62px 32px;
 }
 
+.advantage-band {
+  padding: 62px 32px;
+  background: #fff;
+}
+
+.advantage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.advantage-grid article {
+  min-height: 220px;
+  padding: 22px;
+  border: 1px solid rgba(219, 226, 236, 0.95);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.advantage-grid i {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 18px;
+  color: var(--blue);
+}
+
+.advantage-grid p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+}
+
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -98,6 +132,15 @@
   .testimonial-band {
     padding-left: 18px;
     padding-right: 18px;
+  }
+
+  .advantage-band {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .advantage-grid {
+    grid-template-columns: 1fr;
   }
 
   .testimonial-grid {
