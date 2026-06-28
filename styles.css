@@ -63,27 +63,13 @@ select {
 .brand {
   display: inline-flex;
   align-items: center;
-  width: 168px;
-  min-width: 168px;
-  height: 46px;
-  overflow: hidden;
+  min-width: 176px;
 }
 
-.brand-logo-frame {
-  position: relative;
+.brand img {
   display: block;
-  width: 168px;
-  height: 46px;
-  overflow: hidden;
-}
-
-.brand-logo-frame img {
-  position: absolute;
-  top: -31px;
-  left: 0;
-  display: block;
-  width: 168px;
-  max-width: none;
+  width: 176px;
+  max-width: 28vw;
   height: auto;
 }
 
@@ -711,26 +697,20 @@ select {
   color: var(--muted);
 }
 
-.footer-logo-frame {
-  position: relative;
-  display: block;
-  width: 210px;
-  max-width: min(58vw, 210px);
-  height: 58px;
-  overflow: hidden;
-}
-
-.footer-logo-frame img {
-  position: absolute;
-  top: -39px;
-  left: 0;
-  width: 210px;
+.footer img {
+  width: 220px;
+  max-width: min(58vw, 220px);
   height: auto;
-  max-width: none;
 }
 
 .footer p {
   margin-bottom: 0;
+}
+
+.developer-credit {
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-weight: 800;
 }
 
 .checkout-modal[hidden] {
@@ -863,19 +843,12 @@ select {
   }
 
   .brand {
-    width: 138px;
-    min-width: 138px;
-    height: 38px;
+    min-width: 136px;
   }
 
-  .brand-logo-frame {
-    width: 138px;
-    height: 38px;
-  }
-
-  .brand-logo-frame img {
-    top: -25px;
-    width: 138px;
+  .brand img {
+    width: 136px;
+    max-width: 48vw;
   }
 
   .button-compact {
