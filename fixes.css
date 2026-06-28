@@ -1,16 +1,16 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  width: 230px;
-  min-width: 230px;
-  height: 58px;
+  width: 260px;
+  min-width: 260px;
+  height: auto;
 }
 
 .brand img {
   display: block;
-  width: 230px;
-  height: 58px;
-  object-fit: cover;
+  width: 260px;
+  height: auto;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -73,23 +73,23 @@
 }
 
 .footer img {
-  width: 250px;
-  height: 74px;
-  max-width: min(58vw, 250px);
-  object-fit: cover;
+  width: 310px;
+  height: auto;
+  max-width: min(58vw, 310px);
+  object-fit: contain;
   object-position: center;
 }
 
 @media (max-width: 760px) {
   .brand {
-    width: 154px;
-    min-width: 154px;
-    height: 42px;
+    width: 170px;
+    min-width: 170px;
+    height: auto;
   }
 
   .brand img {
-    width: 154px;
-    height: 42px;
+    width: 170px;
+    height: auto;
     max-width: 48vw;
   }
 
