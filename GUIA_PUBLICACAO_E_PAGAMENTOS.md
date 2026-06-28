@@ -9,11 +9,11 @@ Atualizacao: esta versao ja inclui um backend Netlify em `netlify/functions/tran
 O preco sugerido no site e:
 
 - Primeiro audio gratuito.
-- Creditos avulsos: R$ 0,99 por minuto, compra minima de R$ 19,90.
-- Pro: R$ 79,90/mes com 180 minutos e extra de R$ 0,69/min.
-- Estudio: R$ 249,90/mes com 720 minutos e extra de R$ 0,49/min.
+- Creditos avulsos: R$ 0,79 por minuto, compra minima de R$ 14,90.
+- Pro: R$ 79,90/mes com 420 minutos, saldo acumulavel por 60 dias e extra de R$ 0,39/min.
+- Estudio: R$ 249,90/mes com 1.800 minutos, saldo acumulavel por 60 dias e extra de R$ 0,29/min.
 
-Por que esse valor: em 27/06/2026, referencias internacionais de transcricao automatica ficam perto de US$ 10 por hora em pay-as-you-go e US$ 0,20/min em creditos extras. O preco em reais acima fica competitivo para o Brasil e ainda deixa margem para API, hospedagem, armazenamento e taxas.
+Por que esse valor: em 28/06/2026, referencias internacionais mostram planos com poucos minutos no gratuito, cobranca por hora/minuto e limites por assinatura. A proposta do TurboText AI fica mais agressiva para o Brasil: mais minutos inclusos, menor preco avulso, extras mais baratos e saldo que acumula por 60 dias. Antes de vender em escala, revise sua margem considerando API, hospedagem, armazenamento e taxas de pagamento.
 
 Fontes consultadas:
 
