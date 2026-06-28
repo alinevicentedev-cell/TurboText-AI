@@ -75,14 +75,71 @@ Referencia util: a documentacao do Netlify explica deploy por Git, CLI e arrasta
 
 Para vender no Brasil, recomendo Mercado Pago Checkout Pro porque aceita Pix, cartao, boleto e redireciona o cliente para um ambiente seguro.
 
-Passo a passo:
+Esta versao ja inclui a funcao `netlify/functions/create-payment.mjs`. Ela cria uma preferencia de pagamento no Mercado Pago e redireciona o cliente para o checkout seguro.
+
+### Variaveis para colocar no Netlify
+
+No Netlify, va em `Project configuration` > `Environment variables` > `Add a variable` e crie:
+
+```text
+MERCADO_PAGO_ACCESS_TOKEN=cole_aqui_o_access_token_de_producao_do_mercado_pago
+SITE_URL=https://turbotextai.netlify.app
+```
+
+Se o dominio oficial ja estiver funcionando, troque o `SITE_URL` por:
+
+```text
+SITE_URL=https://turbotextai.com.br
+```
+
+Depois clique em `Deploys` > `Trigger deploy` > `Deploy site` para o Netlify publicar usando as novas variaveis.
+
+### Onde pegar a chave do Mercado Pago
+
+1. Entre em https://www.mercadopago.com.br/developers/panel/app.
+2. Crie uma aplicacao para `TurboText AI`.
+3. Abra a aplicacao.
+4. Va em `Credenciais de producao`.
+5. Copie o `Access Token` de producao.
+6. Cole no Netlify como `MERCADO_PAGO_ACCESS_TOKEN`.
+
+Importante: nao coloque o Access Token dentro do `app.js`, `index.html` ou GitHub publico. Ele precisa ficar somente no Netlify, em variavel de ambiente.
+
+### Como testar
+
+1. Publique o site no Netlify.
+2. Abra `https://turbotextai.netlify.app`.
+3. Clique em `Precos`.
+4. Clique em `Comprar creditos`, `Assinar Pro` ou `Assinar Estudio`.
+5. O site deve abrir o checkout do Mercado Pago.
+6. No checkout, o cliente escolhe Pix, cartao ou boleto quando esses meios estiverem habilitados na sua conta Mercado Pago.
+
+### Webhook para confirmar pagamentos
+
+A funcao de webhook tambem ja foi criada em:
+
+```text
+https://turbotextai.netlify.app/.netlify/functions/mercado-pago-webhook
+```
+
+No painel do Mercado Pago, configure essa URL em `Webhooks` e selecione o evento `Pagamentos`.
+
+Quando o dominio oficial estiver ativo, use:
+
+```text
+https://turbotextai.com.br/.netlify/functions/mercado-pago-webhook
+```
+
+Nesta fase, o webhook registra a confirmacao do pagamento nos logs do Netlify. Para liberar minutos automaticamente por cliente, o proximo passo e criar login e banco de dados para salvar usuario, plano, creditos e historico de pagamento.
+
+Passo a passo tecnico:
 
 1. Crie uma conta de vendedor no Mercado Pago.
 2. Acesse Mercado Pago Developers e crie uma aplicacao.
 3. Pegue as credenciais de producao e guarde somente no backend.
-4. No backend, crie uma preferencia de pagamento com nome do plano, quantidade, moeda BRL e valor.
+4. No backend, crie uma preferencia de pagamento com nome do plano, quantidade, moeda BRL e valor. Neste projeto, isso esta em `netlify/functions/create-payment.mjs`.
 5. Receba o `preference_id` e envie para o front-end.
-6. No `app.js`, preencha `CHECKOUT_URLS` ou troque por uma chamada ao seu backend.
+6. No `app.js`, os botoes ja chamam `/.netlify/functions/create-payment`.
 7. Configure URLs de retorno para sucesso, falha e pendente.
 8. Configure notificacoes/webhooks para liberar creditos somente quando o pagamento estiver aprovado.
 9. Teste com contas/cartoes de teste.
@@ -92,6 +149,7 @@ Referencias oficiais:
 
 - Mercado Pago Checkout Pro: https://www.mercadopago.com.br/developers/pt/docs/checkout-pro/overview
 - Criar preferencia de pagamento: https://www.mercadopago.com.br/developers/pt/docs/checkout-pro/create-payment-preference
+- Webhooks Mercado Pago: https://www.mercadopago.com.br/developers/pt/docs/your-integrations/notifications/webhooks
 
 Para clientes fora do Brasil, use Stripe Checkout como opcao adicional. A documentacao oficial descreve Checkout Sessions para pagamentos unicos e assinaturas: https://docs.stripe.com/payments/checkout
 
