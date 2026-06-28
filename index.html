@@ -15,19 +15,20 @@
     <title>TurboText AI | Audio longo em texto preciso</title>
     <link rel="icon" href="assets/logo.jpg" />
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="stylesheet" href="styles.css?v=20260628-logo" />
+    <link rel="stylesheet" href="styles.css?v=20260628-depoimentos" />
+    <link rel="stylesheet" href="fixes.css?v=20260628-depoimentos-logo" />
   </head>
   <body>
     <header class="topbar">
       <a class="brand" href="#transcrever" aria-label="TurboText AI">
-        <img src="assets/logo-compact.svg" alt="TurboText AI" />
+        <img src="assets/logo.jpg" alt="TurboText AI" />
       </a>
 
       <nav class="nav-links" aria-label="Navegacao principal">
         <a href="#transcrever">Transcrever</a>
-        <a href="#precos">Precos</a>
+        <a href="#precos">Preços</a>
         <a href="#pagamentos">Pagamentos</a>
-        <a href="#seguranca">Seguranca</a>
+        <a href="#depoimentos">Depoimentos</a>
       </nav>
 
       <a class="button button-primary button-compact" href="#transcrever">
@@ -200,7 +201,7 @@
 
       <section class="pricing-band" id="precos">
         <div class="section-heading">
-          <p class="eyebrow">Precos de lancamento</p>
+          <p class="eyebrow">Preços de lançamento</p>
           <h2>Modelo simples: o primeiro audio e gratis, depois voce paga pelo volume.</h2>
         </div>
 
@@ -296,22 +297,47 @@
         </div>
       </section>
 
-      <section class="security-band" id="seguranca">
-        <div class="security-grid">
-          <article>
-            <i data-lucide="shield-check" aria-hidden="true"></i>
-            <h3>Privacidade</h3>
-            <p>Arquivos de audio devem ser enviados para armazenamento privado e removidos conforme sua politica de retencao.</p>
+      <section class="testimonial-band" id="depoimentos">
+        <div class="section-heading compact">
+          <p class="eyebrow">Depoimentos de exemplo</p>
+          <h2>Como o TurboText AI ajuda em audios longos, entrevistas e conteúdos em outros idiomas.</h2>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-top">
+              <span class="testimonial-avatar">MR</span>
+              <div>
+                <h3>Marina Rocha</h3>
+                <p>Produtora de conteudo</p>
+              </div>
+            </div>
+            <blockquote>
+              "Antes eu gastava uma tarde inteira revisando entrevistas longas. Agora envio o audio, recebo o texto base e consigo focar na edicao final."
+            </blockquote>
           </article>
-          <article>
-            <i data-lucide="server-cog" aria-hidden="true"></i>
-            <h3>Escala</h3>
-            <p>O front-end esta pronto para conectar a uma API de transcricao, fila de processamento e armazenamento em nuvem.</p>
+          <article class="testimonial-card">
+            <div class="testimonial-top">
+              <span class="testimonial-avatar">LC</span>
+              <div>
+                <h3>Lucas Carvalho</h3>
+                <p>Professor e pesquisador</p>
+              </div>
+            </div>
+            <blockquote>
+              "Uso em aulas gravadas e reunioes de pesquisa. O resumo executivo ajuda a encontrar os pontos importantes sem ouvir horas de audio novamente."
+            </blockquote>
           </article>
-          <article>
-            <i data-lucide="badge-dollar-sign" aria-hidden="true"></i>
-            <h3>Controle de uso</h3>
-            <p>O primeiro audio gratis aparece no navegador; em producao, valide o limite por login, e-mail e pagamento confirmado.</p>
+          <article class="testimonial-card">
+            <div class="testimonial-top">
+              <span class="testimonial-avatar">AS</span>
+              <div>
+                <h3>Ana Souza</h3>
+                <p>Consultora internacional</p>
+              </div>
+            </div>
+            <blockquote>
+              "Tenho audios em portugues, espanhol e ingles. A deteccao automatica de idioma facilita muito quando preciso transformar conversas em relatorios."
+            </blockquote>
           </article>
         </div>
       </section>
@@ -346,7 +372,7 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <footer class="footer">
-      <img src="assets/logo-compact.svg" alt="TurboText AI" />
+      <img src="assets/logo.jpg" alt="TurboText AI" />
       <div>
         <p>TurboText AI. Audio longo, texto preciso, resultados rapidos.</p>
         <p class="developer-credit">Desenvolvido por Aline Flores</p>
