@@ -10,6 +10,7 @@
   display: block;
   width: 260px;
   height: auto;
+  content: url("assets/logo-site.svg?v=20260628-logo-final");
   object-fit: contain;
   object-position: center;
 }
@@ -76,6 +77,7 @@
   width: 310px;
   height: auto;
   max-width: min(58vw, 310px);
+  content: url("assets/logo-site.svg?v=20260628-logo-final");
   object-fit: contain;
   object-position: center;
 }
