@@ -240,6 +240,17 @@ const assertCanUseRealBackend = () => {
   }
 };
 
+const friendlyErrorMessage = (message) => {
+  const text = String(message || "");
+  const lower = text.toLowerCase();
+
+  if (lower.includes("incorrect api key") || lower.includes("valid issuer")) {
+    return "A chave da OpenAI esta incorreta ou foi copiada incompleta. Crie uma nova no painel da OpenAI e salve no Netlify como OPENAI_API_KEY.";
+  }
+
+  return text || "Nao foi possivel transcrever agora.";
+};
+
 const transcribeAudio = async () => {
   const formData = new FormData();
   formData.append("audio", selectedFile);
@@ -262,7 +273,7 @@ const transcribeAudio = async () => {
   }
 
   if (!response.ok) {
-    throw new Error(data?.error || "Nao foi possivel transcrever agora.");
+    throw new Error(friendlyErrorMessage(data?.error));
   }
 
   return data;
@@ -380,7 +391,7 @@ elements.copyButton.addEventListener("click", async () => {
 
 const getTranscriptText = () => {
   const text = elements.transcriptOutput.textContent.trim();
-  const placeholder = "Quando o primeiro audio for enviado";
+  const placeholder = "Envie um audio";
 
   if (!text || text.startsWith(placeholder)) {
     showToast("Ainda nao ha transcricao para exportar.");
