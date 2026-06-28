@@ -54,7 +54,7 @@ select {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 22px;
-  padding: 14px 32px;
+  padding: 8px 32px;
   border-bottom: 1px solid rgba(219, 226, 236, 0.82);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
@@ -63,16 +63,28 @@ select {
 .brand {
   display: inline-flex;
   align-items: center;
-  min-width: 240px;
+  width: 168px;
+  min-width: 168px;
+  height: 46px;
+  overflow: hidden;
 }
 
-.brand img {
+.brand-logo-frame {
+  position: relative;
   display: block;
-  width: 240px;
-  max-width: 32vw;
-  height: 66px;
-  object-fit: cover;
-  object-position: center;
+  width: 168px;
+  height: 46px;
+  overflow: hidden;
+}
+
+.brand-logo-frame img {
+  position: absolute;
+  top: -31px;
+  left: 0;
+  display: block;
+  width: 168px;
+  max-width: none;
+  height: auto;
 }
 
 .nav-links {
@@ -699,12 +711,22 @@ select {
   color: var(--muted);
 }
 
-.footer img {
-  width: 260px;
-  max-width: min(58vw, 260px);
-  height: 72px;
-  object-fit: cover;
-  object-position: center;
+.footer-logo-frame {
+  position: relative;
+  display: block;
+  width: 210px;
+  max-width: min(58vw, 210px);
+  height: 58px;
+  overflow: hidden;
+}
+
+.footer-logo-frame img {
+  position: absolute;
+  top: -39px;
+  left: 0;
+  width: 210px;
+  height: auto;
+  max-width: none;
 }
 
 .footer p {
@@ -840,10 +862,20 @@ select {
     gap: 10px;
   }
 
-  .brand img {
-    width: 170px;
-    max-width: 50vw;
-    height: 48px;
+  .brand {
+    width: 138px;
+    min-width: 138px;
+    height: 38px;
+  }
+
+  .brand-logo-frame {
+    width: 138px;
+    height: 38px;
+  }
+
+  .brand-logo-frame img {
+    top: -25px;
+    width: 138px;
   }
 
   .button-compact {
