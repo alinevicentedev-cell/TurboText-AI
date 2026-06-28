@@ -162,7 +162,6 @@ export default async (request) => {
       segments,
       summary,
       duration: data.duration || null,
-      usage: data.usage || null,
     });
   } catch (error) {
     return json(500, {
