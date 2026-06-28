@@ -1,6 +1,6 @@
 const FREE_KEY = "turbotext-ai-real-free-audio-used";
-const PRICE_PER_MINUTE = 0.99;
-const MINIMUM_PURCHASE = 19.9;
+const PRICE_PER_MINUTE = 0.79;
+const MINIMUM_PURCHASE = 14.9;
 const MAX_AUDIO_SIZE = 25 * 1024 * 1024;
 const CHECKOUT_URLS = {
   avulso: "",
@@ -456,6 +456,79 @@ elements.downloadPdfButton.addEventListener("click", () => {
 
 renderUsage();
 setProgress(0, "Aguardando envio");
+
+const applyOfferPositioning = () => {
+  const pricingSection = document.querySelector("#precos");
+  if (!pricingSection) return;
+
+  const heading = pricingSection.querySelector(".section-heading h2");
+  if (heading) {
+    heading.textContent = "Mais minutos incluidos, extras mais baratos e saldo que acumula por 60 dias.";
+  }
+
+  const cards = pricingSection.querySelectorAll(".price-card");
+  const avulso = cards[1];
+  const pro = cards[2];
+  const estudio = cards[3];
+
+  if (avulso) {
+    avulso.querySelector(".price").textContent = "R$ 0,79/min";
+    const items = avulso.querySelectorAll("li");
+    if (items[0]) items[0].textContent = "Minimo de R$ 14,90 por compra";
+    if (items[1]) items[1].textContent = "Ideal para entrevistas e aulas";
+    if (items[2]) items[2].textContent = "Resumo, falantes e exportacoes incluidos";
+  }
+
+  if (pro) {
+    const items = pro.querySelectorAll("li");
+    if (items[0]) items[0].textContent = "420 minutos incluidos por mes";
+    if (items[1]) items[1].textContent = "Minutos nao usados acumulam por 60 dias";
+    if (items[2]) items[2].textContent = "Extras por R$ 0,39/min";
+  }
+
+  if (estudio) {
+    const items = estudio.querySelectorAll("li");
+    if (items[0]) items[0].textContent = "1.800 minutos incluidos por mes";
+    if (items[1]) items[1].textContent = "Saldo acumulado por 60 dias";
+    if (items[2]) items[2].textContent = "Extras por R$ 0,29/min e prioridade";
+  }
+
+  const modalOptions = document.querySelectorAll(".checkout-option");
+  if (modalOptions[0]) modalOptions[0].querySelector("span").textContent = "R$ 0,79 por minuto, minimo R$ 14,90";
+  if (modalOptions[1]) modalOptions[1].querySelector("span").textContent = "R$ 79,90 por mes com 420 minutos acumulaveis";
+  if (modalOptions[2]) modalOptions[2].querySelector("span").textContent = "R$ 249,90 por mes com 1.800 minutos acumulaveis";
+
+  if (!document.querySelector(".advantage-band")) {
+    pricingSection.insertAdjacentHTML(
+      "afterend",
+      `<section class="advantage-band">
+        <div class="section-heading compact">
+          <p class="eyebrow">Vantagem TurboText</p>
+          <h2>Mais valor para quem transcreve audio longo de verdade.</h2>
+        </div>
+        <div class="advantage-grid">
+          <article>
+            <i data-lucide="calendar-plus" aria-hidden="true"></i>
+            <h3>Minutos acumulaveis</h3>
+            <p>O saldo nao usado fica disponivel por 60 dias, para o cliente nao perder minutos em meses mais tranquilos.</p>
+          </article>
+          <article>
+            <i data-lucide="sparkles" aria-hidden="true"></i>
+            <h3>Recursos sem taxa extra</h3>
+            <p>Resumo executivo, separacao de falantes, marcadores de tempo e exportacoes entram no pacote.</p>
+          </article>
+          <article>
+            <i data-lucide="clock-3" aria-hidden="true"></i>
+            <h3>Feito para arquivos longos</h3>
+            <p>Planos com mais minutos inclusos para entrevistas, aulas, reunioes, pesquisas e conteudos em outros idiomas.</p>
+          </article>
+        </div>
+      </section>`
+    );
+  }
+};
+
+applyOfferPositioning();
 
 if (window.lucide) {
   window.lucide.createIcons();
