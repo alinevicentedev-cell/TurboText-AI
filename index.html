@@ -15,7 +15,7 @@
     <title>TurboText AI | Audio longo em texto preciso</title>
     <link rel="icon" href="assets/logo.jpg" />
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="stylesheet" href="styles.css?v=20260628-depoimentos" />
+    <link rel="stylesheet" href="styles.css?v=20260628-suporte" />
     <link rel="stylesheet" href="fixes.css?v=20260628-logo-final" />
   </head>
   <body>
@@ -29,6 +29,7 @@
         <a href="#precos">Preços</a>
         <a href="#pagamentos">Pagamentos</a>
         <a href="#depoimentos">Depoimentos</a>
+        <a href="#suporte">Suporte</a>
       </nav>
 
       <a class="button button-primary button-compact" href="#transcrever">
@@ -202,7 +203,7 @@
       <section class="pricing-band" id="precos">
         <div class="section-heading">
           <p class="eyebrow">Preços de lançamento</p>
-          <h2>Modelo simples: o primeiro audio e gratis, depois voce paga pelo volume.</h2>
+          <h2>Mais minutos incluidos, extras mais baratos e saldo que acumula por 60 dias.</h2>
         </div>
 
         <div class="pricing-grid">
@@ -221,11 +222,11 @@
           <article class="price-card featured">
             <p class="plan-label">Avulso</p>
             <h3>Por minuto</h3>
-            <strong class="price">R$ 0,99/min</strong>
+            <strong class="price">R$ 0,79/min</strong>
             <ul>
-              <li>Minimo de R$ 19,90 por compra</li>
+              <li>Minimo de R$ 14,90 por compra</li>
               <li>Ideal para entrevistas e aulas</li>
-              <li>Pagamento por Pix, cartao ou boleto</li>
+              <li>Resumo, falantes e exportacoes incluidos</li>
             </ul>
             <button class="button button-primary plan-button" type="button" data-plan="avulso">Comprar creditos</button>
           </article>
@@ -235,9 +236,9 @@
             <h3>Uso mensal</h3>
             <strong class="price">R$ 79,90/mes</strong>
             <ul>
-              <li>180 minutos incluidos</li>
-              <li>Extras por R$ 0,69/min</li>
-              <li>Exportacao DOCX, PDF, SRT e VTT</li>
+              <li>420 minutos incluidos por mes</li>
+              <li>Minutos nao usados acumulam por 60 dias</li>
+              <li>Extras por R$ 0,39/min</li>
             </ul>
             <button class="button button-soft plan-button" type="button" data-plan="pro">Assinar Pro</button>
           </article>
@@ -247,11 +248,35 @@
             <h3>Alto volume</h3>
             <strong class="price">R$ 249,90/mes</strong>
             <ul>
-              <li>720 minutos incluidos</li>
-              <li>Extras por R$ 0,49/min</li>
-              <li>Pastas, equipe e prioridade</li>
+              <li>1.800 minutos incluidos por mes</li>
+              <li>Saldo acumulado por 60 dias</li>
+              <li>Extras por R$ 0,29/min e prioridade</li>
             </ul>
             <button class="button button-soft plan-button" type="button" data-plan="estudio">Assinar Estudio</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="advantage-band">
+        <div class="section-heading compact">
+          <p class="eyebrow">Vantagem TurboText</p>
+          <h2>Mais valor para quem transcreve audio longo de verdade.</h2>
+        </div>
+        <div class="advantage-grid">
+          <article>
+            <i data-lucide="calendar-plus" aria-hidden="true"></i>
+            <h3>Minutos acumulaveis</h3>
+            <p>O saldo nao usado fica disponivel por 60 dias, para o cliente nao perder minutos em meses mais tranquilos.</p>
+          </article>
+          <article>
+            <i data-lucide="sparkles" aria-hidden="true"></i>
+            <h3>Recursos sem taxa extra</h3>
+            <p>Resumo executivo, separacao de falantes, marcadores de tempo e exportacoes entram no pacote.</p>
+          </article>
+          <article>
+            <i data-lucide="clock-3" aria-hidden="true"></i>
+            <h3>Feito para arquivos longos</h3>
+            <p>Planos com mais minutos inclusos para entrevistas, aulas, reunioes, pesquisas e conteudos em outros idiomas.</p>
           </article>
         </div>
       </section>
@@ -341,6 +366,84 @@
           </article>
         </div>
       </section>
+
+      <section class="support-band" id="suporte">
+        <div class="support-layout">
+          <div class="support-copy">
+            <p class="eyebrow">Suporte</p>
+            <h2>Fale com o suporte do TurboText AI.</h2>
+            <p>
+              Use este formulario para duvidas sobre transcricao, pagamento, creditos,
+              planos ou problemas com arquivos. Nossa equipe recebe sua solicitacao
+              e retorna pelo melhor canal de contato informado.
+            </p>
+            <div class="support-highlights" aria-label="Atendimento">
+              <span><i data-lucide="mail-check" aria-hidden="true"></i> Resposta por e-mail</span>
+              <span><i data-lucide="clock-3" aria-hidden="true"></i> Atendimento ao cliente</span>
+              <span><i data-lucide="shield-check" aria-hidden="true"></i> Dados protegidos</span>
+            </div>
+          </div>
+
+          <form
+            class="support-form"
+            id="supportForm"
+            name="suporte-turbotext-ai"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="suporte-turbotext-ai" />
+            <p class="support-hidden">
+              <label>Nao preencher: <input name="bot-field" /></label>
+            </p>
+
+            <div class="support-field-grid">
+              <label>
+                Nome
+                <input type="text" name="nome" autocomplete="name" required />
+              </label>
+              <label>
+                E-mail
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+            </div>
+
+            <div class="support-field-grid">
+              <label>
+                WhatsApp
+                <input type="tel" name="whatsapp" autocomplete="tel" placeholder="Opcional" />
+              </label>
+              <label>
+                Assunto
+                <select name="assunto" required>
+                  <option value="">Selecione</option>
+                  <option>Transcricao nao apareceu</option>
+                  <option>Pagamento ou creditos</option>
+                  <option>Plano Pro ou Estudio</option>
+                  <option>Arquivo grande</option>
+                  <option>Outro assunto</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Mensagem
+              <textarea
+                name="mensagem"
+                rows="6"
+                placeholder="Conte o que aconteceu ou como podemos ajudar."
+                required
+              ></textarea>
+            </label>
+
+            <button class="button button-primary" type="submit">
+              <i data-lucide="send" aria-hidden="true"></i>
+              Enviar para suporte
+            </button>
+            <p class="support-status" id="supportStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
     </main>
 
     <div class="checkout-modal" id="checkoutModal" hidden>
@@ -354,18 +457,18 @@
         <div class="modal-options">
           <button type="button" class="checkout-option" data-plan="avulso">
             <strong>Creditos avulsos</strong>
-            <span>R$ 0,99 por minuto, minimo R$ 19,90</span>
+            <span>R$ 0,79 por minuto, minimo R$ 14,90</span>
           </button>
           <button type="button" class="checkout-option" data-plan="pro">
             <strong>Plano Pro</strong>
-            <span>R$ 79,90 por mes com 180 minutos</span>
+            <span>R$ 79,90 por mes com 420 minutos acumulaveis</span>
           </button>
           <button type="button" class="checkout-option" data-plan="estudio">
             <strong>Plano Estudio</strong>
-            <span>R$ 249,90 por mes com 720 minutos</span>
+            <span>R$ 249,90 por mes com 1.800 minutos acumulaveis</span>
           </button>
         </div>
-        <p class="modal-note">O pagamento real e conectado no backend com Mercado Pago ou Stripe. A transcricao real ja usa backend seguro.</p>
+        <p class="modal-note">Checkout seguro via Mercado Pago com Pix, cartao e boleto. Os creditos sao liberados apos a confirmacao do pagamento.</p>
       </section>
     </div>
 
@@ -380,6 +483,6 @@
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=20260628-suporte"></script>
   </body>
 </html>
