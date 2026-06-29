@@ -34,6 +34,8 @@ const elements = {
   downloadPdfButton: document.querySelector("#downloadPdfButton"),
   checkoutModal: document.querySelector("#checkoutModal"),
   toast: document.querySelector("#toast"),
+  supportForm: document.querySelector("#supportForm"),
+  supportStatus: document.querySelector("#supportStatus"),
 };
 
 let selectedFile = null;
@@ -132,6 +134,47 @@ const showToast = (message) => {
   elements.toast.hideTimer = window.setTimeout(() => {
     elements.toast.classList.remove("is-visible");
   }, 3400);
+};
+
+const encodeSupportForm = (form) => new URLSearchParams(new FormData(form)).toString();
+
+const sendSupportForm = async (event) => {
+  event.preventDefault();
+
+  if (window.location.protocol === "file:") {
+    elements.supportStatus.textContent = "O formulario de suporte funciona depois que o site estiver publicado.";
+    elements.supportStatus.classList.add("is-error");
+    showToast("Publique o site para testar o envio do suporte.");
+    return;
+  }
+
+  const submitButton = elements.supportForm.querySelector("button[type='submit']");
+
+  try {
+    submitButton.disabled = true;
+    elements.supportStatus.textContent = "Enviando mensagem...";
+    elements.supportStatus.classList.remove("is-error");
+
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodeSupportForm(elements.supportForm),
+    });
+
+    if (!response.ok) {
+      throw new Error("Nao foi possivel enviar agora. Tente novamente em alguns minutos.");
+    }
+
+    elements.supportForm.reset();
+    elements.supportStatus.textContent = "Mensagem enviada. O suporte recebeu seu pedido.";
+    showToast("Mensagem enviada para o suporte.");
+  } catch (error) {
+    elements.supportStatus.textContent = error.message;
+    elements.supportStatus.classList.add("is-error");
+    showToast(error.message);
+  } finally {
+    submitButton.disabled = false;
+  }
 };
 
 const updateFileSummary = (file) => {
@@ -250,17 +293,12 @@ const buildTranscriptText = (result) => {
     lines.push(result.text || "Transcricao concluida, mas sem texto retornado.");
   }
 
-  if (result.usage) {
-    lines.push("");
-    lines.push(`Uso da API: ${JSON.stringify(result.usage)}`);
-  }
-
   return lines.join("\n");
 };
 
 const assertCanUseRealBackend = () => {
   if (window.location.protocol === "file:") {
-    throw new Error("Para transcrever de verdade, publique no Netlify ou rode o site com Netlify Dev. Aberto como arquivo local, a funcao de servidor nao existe.");
+    throw new Error("Para transcrever de verdade, use a versao publicada do site. Aberto como arquivo local, o envio do audio nao fica disponivel.");
   }
 };
 
@@ -269,7 +307,7 @@ const friendlyErrorMessage = (message) => {
   const lower = text.toLowerCase();
 
   if (lower.includes("incorrect api key") || lower.includes("valid issuer")) {
-    return "A chave da OpenAI esta incorreta ou foi copiada incompleta. Crie uma nova no painel da OpenAI e salve no Netlify como OPENAI_API_KEY.";
+    return "No momento, a transcricao esta indisponivel. Tente novamente em alguns minutos ou fale com o suporte.";
   }
 
   return text || "Nao foi possivel transcrever agora.";
@@ -477,6 +515,10 @@ elements.downloadPdfButton.addEventListener("click", () => {
 ["language", "outputFormat", "timestamps", "speakers", "summary"].forEach((id) => {
   document.querySelector(`#${id}`).addEventListener("change", renderUsage);
 });
+
+if (elements.supportForm) {
+  elements.supportForm.addEventListener("submit", sendSupportForm);
+}
 
 renderUsage();
 setProgress(0, "Aguardando envio");
