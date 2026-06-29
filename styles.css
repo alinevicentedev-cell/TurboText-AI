@@ -42,7 +42,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -63,14 +64,15 @@ select {
 .brand {
   display: inline-flex;
   align-items: center;
-  min-width: 176px;
+  min-width: 214px;
 }
 
 .brand img {
   display: block;
-  width: 176px;
-  max-width: 28vw;
+  width: 214px;
+  max-width: 30vw;
   height: auto;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -114,7 +116,7 @@ select {
 .icon-button svg,
 .trust-strip svg,
 .payment-methods svg,
-.security-grid svg {
+.testimonial-card svg {
   width: 18px;
   height: 18px;
   stroke-width: 2.2;
@@ -234,8 +236,9 @@ h3 {
 .tool-panel,
 .result-panel,
 .price-card,
+.advantage-grid article,
 .flow-grid article,
-.security-grid article,
+.testimonial-card,
 .modal-panel {
   border: 1px solid rgba(219, 226, 236, 0.95);
   border-radius: 8px;
@@ -552,14 +555,18 @@ select {
 }
 
 .pricing-band,
+.advantage-band,
 .flow-band,
 .payments-band,
-.security-band {
+.testimonial-band,
+.support-band {
   padding: 62px 32px;
 }
 
 .pricing-band,
-.payments-band {
+.advantage-band,
+.payments-band,
+.support-band {
   background: #fff;
 }
 
@@ -620,8 +627,33 @@ select {
   width: 100%;
 }
 
+.advantage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.advantage-grid article {
+  min-height: 220px;
+  padding: 22px;
+}
+
+.advantage-grid i {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 18px;
+  color: var(--blue);
+}
+
+.advantage-grid p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+}
+
 .flow-grid,
-.security-grid {
+.testimonial-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
@@ -630,7 +662,7 @@ select {
 }
 
 .flow-grid article,
-.security-grid article {
+.testimonial-card {
   padding: 22px;
   box-shadow: none;
 }
@@ -649,10 +681,46 @@ select {
 }
 
 .flow-grid p,
-.security-grid p,
+.testimonial-card p,
 .payments-copy p {
   margin-bottom: 0;
   color: var(--ink-soft);
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 260px;
+}
+
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: #edf3ff;
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.testimonial-card h3 {
+  margin-bottom: 2px;
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.62;
 }
 
 .payments-band {
@@ -679,11 +747,126 @@ select {
   justify-content: center;
 }
 
-.security-grid svg {
+.support-band {
+  border-top: 1px solid var(--line);
+}
+
+.support-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(360px, 0.9fr);
+  gap: 28px;
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.support-copy {
+  padding: 8px 0;
+}
+
+.support-copy h2 {
+  max-width: 540px;
+  font-size: 2rem;
+}
+
+.support-copy p {
+  max-width: 560px;
+  color: var(--ink-soft);
+}
+
+.support-highlights {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.support-highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: #fbfcff;
+  color: var(--ink-soft);
+  font-weight: 800;
+}
+
+.support-highlights svg {
+  width: 18px;
+  height: 18px;
   color: var(--blue);
-  width: 28px;
-  height: 28px;
-  margin-bottom: 12px;
+}
+
+.support-form {
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(219, 226, 236, 0.95);
+  border-radius: 8px;
+  padding: 22px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.support-hidden {
+  display: none;
+}
+
+.support-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.support-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.support-form input,
+.support-form select,
+.support-form textarea {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.support-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.support-form input:focus,
+.support-form select:focus,
+.support-form textarea:focus {
+  outline: 3px solid rgba(38, 104, 255, 0.16);
+  border-color: var(--blue);
+}
+
+.support-form .button {
+  width: fit-content;
+  min-width: 210px;
+}
+
+.support-status {
+  min-height: 24px;
+  margin-bottom: 0;
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.support-status.is-error {
+  color: #bc2f22;
 }
 
 .footer {
@@ -698,9 +881,10 @@ select {
 }
 
 .footer img {
-  width: 220px;
-  max-width: min(58vw, 220px);
+  width: 250px;
+  max-width: min(58vw, 250px);
   height: auto;
+  object-fit: contain;
 }
 
 .footer p {
@@ -806,9 +990,11 @@ select {
     display: none;
   }
 
+  .advantage-grid,
   .workspace-heading,
   .app-grid,
-  .payments-band {
+  .payments-band,
+  .support-layout {
     grid-template-columns: 1fr;
   }
 
@@ -830,9 +1016,10 @@ select {
   .topbar,
   .workspace-band,
   .pricing-band,
+  .advantage-band,
   .flow-band,
   .payments-band,
-  .security-band,
+  .testimonial-band,
   .footer {
     padding-left: 18px;
     padding-right: 18px;
@@ -843,11 +1030,11 @@ select {
   }
 
   .brand {
-    min-width: 136px;
+    min-width: 148px;
   }
 
   .brand img {
-    width: 136px;
+    width: 148px;
     max-width: 48vw;
   }
 
@@ -875,12 +1062,14 @@ select {
   }
 
   .form-grid,
-  .toggle-grid,
-  .estimate-row,
-  .pricing-grid,
-  .flow-grid,
-  .security-grid,
-  .payment-methods {
+    .toggle-grid,
+    .estimate-row,
+    .pricing-grid,
+    .advantage-grid,
+    .flow-grid,
+    .testimonial-grid,
+    .support-field-grid,
+    .payment-methods {
     grid-template-columns: 1fr;
   }
 
